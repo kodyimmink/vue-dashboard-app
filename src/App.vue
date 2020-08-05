@@ -1,11 +1,9 @@
 <template>
   <Main/>
-  <!-- <Weather :weather='weather'/> -->
 </template>
 
 <script>
 import Main from './components/Main';
-// import Weather from './components/Weather';
 
 export default {
   name: 'App',
@@ -17,18 +15,17 @@ export default {
 
   data: () => ({
     //
-    weather: {
-      location: 'Davison, MI',
-      condition: 'Cloudy',
-      precipitation: '10%',
-      temperature: '76.4 °F',
-      humidity: '68%',
-      wind: '12 mph'
-    }
   }),
 };
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+body {
+  color: rgb(214, 210, 210);
+  background-color: rgb(163, 158, 158);
+  font-family: 'Nunito', sans-serif;
+}
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card grow" :class="weatherConditionImage(this.weather.condition)">
     <div class="card-title">CURRENT WEATHER</div>
     <div class="location">
       <div class="icon"><weather-icon icon="wind-direction"/></div>
@@ -7,12 +7,11 @@
     </div>
     <div class="weather-overview">
       <div class="overview-wrapper">
-        <div class="condition-icon">
-          <weather-icon class="icon-size" :icon="weatherConditionIcon(this.weather.condition)"/>
-        </div>
+        
         <div class="temperature">
+          <weather-icon class="icon-size condition-icon" :icon="weatherConditionIcon(this.weather.condition)"/>
           {{ weather.temperature }}
-        </div>
+          </div>
       </div>
     </div>
     <div class="weather-details">
@@ -68,6 +67,26 @@ export default {
       if(condition === 'Windy'){
         return 'day-windy';
       }
+      if(condition === 'Rainy'){
+        return 'day-rain';
+      }
+      else {
+        return 'na'
+      }
+    },
+    weatherConditionImage(condition) {
+      if(condition === 'Sunny'){
+        return 'bg-image-sunny';
+      }
+      if(condition === 'Cloudy'){
+        return 'bg-image-cloudy';
+      }
+      if(condition === 'Windy'){
+        return 'bg-image-windy';
+      }
+      if(condition === 'Rainy'){
+        return 'bg-image-rainy';
+      }
       else {
         return 'na'
       }
@@ -78,15 +97,47 @@ export default {
 
 <style scoped>
 
+.bg-image-sunny {
+    color: rgb(13, 55, 119);
+    background-image: url('./assets/sunny.jpg');
+    background-size: cover;
+}
+
+.bg-image-cloudy {
+    color: white;
+    background-image: url('./assets/cloudy.jpg');
+    background-size: cover;
+}
+
+.bg-image-windy {
+    color: rgb(58, 56, 56);
+    background-image: url('./assets/windy.jpg');
+    background-size: cover;
+}
+
+.bg-image-rainy {
+    background-image: url('./assets/rainy.jpg');
+    background-size: cover;
+}
+
 .card-title {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.7rem;
+  font-weight: 900;
 }
 
 .card {
   height: 100%;
   width: 100%;
   padding: 1em;
+  cursor: pointer;
+}
+
+.grow { 
+  transition: all .2s ease-in-out;
+}
+
+.grow:hover, .grow:active {
+  transform: scale(1.05);
 }
 
 .location {
@@ -95,7 +146,7 @@ export default {
 
 .weather-overview {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-content: center;
 }
@@ -107,9 +158,10 @@ export default {
 
 .overview-wrapper {
   display: flex;           display: -webkit-flex;
-  flex-direction: row;     -webkit-flex-direction: row;
+  flex-direction: column;     -webkit-flex-direction: row;
   flex-grow: 0;            -webkit-flex-grow: 0;
   justify-content: center;
+  padding: 1rem;
 }
 
 .details-wrapper {
@@ -117,6 +169,7 @@ export default {
   flex-direction: row;     -webkit-flex-direction: row;
   flex-grow: 0;            -webkit-flex-grow: 0;
   justify-content: space-between;
+  font-size: 1.35em;
 }
 
 .label {
@@ -132,16 +185,17 @@ export default {
   width:20px; 
 }
 
-.icon-size {
+/* .icon-size {
   transform: scale(3) translate(66%, 66%);
-}
+} */
 
-.condition-icon {
+/* .condition-icon {
   height: 100px;
   width: 100px;
-}
+} */
 
 .temperature {
+  font-weight: 900;
   font-size: 3rem;
   white-space: nowrap;
 }
