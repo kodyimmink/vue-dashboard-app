@@ -1,5 +1,7 @@
 # vue-dashboard-app
 
+Simple dashboard app the will display relevant metrics to building stakeholders and occupants.
+
 ## Project setup
 ```
 npm install
