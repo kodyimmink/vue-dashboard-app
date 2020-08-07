@@ -1,16 +1,27 @@
 <template>
-  <Main/>
+<div class="flex flex-col h-screen">
+  <div class="bg-blue-400">
+    <header-section/>
+  </div>
+  <div class="flex flex-1 bg-blue-300 overflow-y-hidden">
+    <sidebar/>
+    <dashboard/>
+  </div>
+</div>
 </template>
 
 <script>
-import Main from './components/Main';
+import HeaderSection from './components/Header/Header';
+import Sidebar from './components/Sidebar/Sidebar';
+import Dashboard from './components/Dashboard/Dashboard';
 
 export default {
   name: 'App',
 
   components: {
-    Main,
-    // Weather
+    HeaderSection,
+    Sidebar,
+    Dashboard
   },
 
   data: () => ({
@@ -23,7 +34,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 body {
-  color: rgb(214, 210, 210);
+  color: white;
   background-color: rgb(163, 158, 158);
   font-family: 'Nunito', sans-serif;
 }
